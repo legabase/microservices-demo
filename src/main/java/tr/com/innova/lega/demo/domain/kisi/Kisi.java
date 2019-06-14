@@ -15,7 +15,7 @@ public class Kisi {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private Long id;
+    private String id;
 
     @Column(name = "AD")
     private String ad;
