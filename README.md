@@ -1,2 +1,3 @@
 # microservices-demo-app
-deneme
+
+Genişleme için client, service ve app olarak ayrıldı
