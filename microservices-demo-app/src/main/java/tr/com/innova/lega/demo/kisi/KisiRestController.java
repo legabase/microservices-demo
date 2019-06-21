@@ -13,18 +13,20 @@ import java.util.Optional;
 
 @RestController
 @NoArgsConstructor
-@RequestMapping("kisi")
+@RequestMapping("v1/kisi")
 public class KisiRestController {
 
     private KisiRepository kisiRepository;
+    private KisiService kisiService;
 
     @Autowired
-    public KisiRestController(KisiRepository kisiRepository) {
+    public KisiRestController(KisiRepository kisiRepository, KisiService kisiService) {
         this.kisiRepository = kisiRepository;
+        this.kisiService = kisiService;
     }
 
     @GetMapping
-    public List<KisiDTO> getKisiList() {
+    public List<KisiDTO> getAll() {
         List<KisiDTO> kisiDTOList = new ArrayList<>();
         Iterable<Kisi> kisiIterable = kisiRepository.findAll();
         kisiIterable.forEach(kisi -> kisiDTOList.add(KisiDTO.mapFromKisi(kisi)));
@@ -32,8 +34,8 @@ public class KisiRestController {
     }
 
 
-    @GetMapping("/id")
-    public KisiDTO getKisi(@PathVariable String id) {
+    @GetMapping("{id}")
+    public KisiDTO findById(@PathVariable String id) {
         Optional<Kisi> kisi = kisiRepository.findById(id);
         if (kisi.isPresent()) {
             return KisiDTO.mapFromKisi(kisi.get());
