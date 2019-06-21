@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import tr.com.innova.lega.demo.kisi.Kisi;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -20,8 +19,7 @@ public class Adres {
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @NotNull
-    @Column(name = "ACIK_ADRES", columnDefinition = "VARCHAR", length = 256)
+    @Column(name = "ACIK_ADRES", columnDefinition = "VARCHAR", length = 256, nullable = false)
     private String acikAdres;
 
     @ManyToOne

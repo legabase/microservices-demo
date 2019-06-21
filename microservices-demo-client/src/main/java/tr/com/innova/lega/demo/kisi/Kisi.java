@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -19,8 +18,7 @@ public class Kisi {
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @NotNull
-    @Column(name = "AD", columnDefinition = "VARCHAR", length = 256)
+    @Column(name = "AD", columnDefinition = "VARCHAR", length = 256, nullable = false)
     private String ad;
 
     @Column(name = "SOYAD", columnDefinition = "VARCHAR", length = 256)

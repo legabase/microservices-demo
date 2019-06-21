@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class KisiDTO {
+    private String id;
     private String ad;
     private String soyad;
 
@@ -13,6 +14,7 @@ public class KisiDTO {
         KisiDTO kisiDTO = null;
         if (kisi != null) {
             kisiDTO = new KisiDTO();
+            kisiDTO.setId(kisi.getId());
             kisiDTO.setAd(kisi.getAd());
             kisiDTO.setSoyad(kisi.getSoyad());
         }
