@@ -1,10 +1,12 @@
 package tr.com.innova.lega.demo.kisi;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@JsonFilter("KisiDTOFilter")
 public class KisiDTO {
     private String id;
     private String ad;
