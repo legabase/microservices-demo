@@ -7,5 +7,3 @@ Sunucu port'u değiştirmek için **application.properties** dosyasındaki **ser
 
 App modulü sadece Client modülü içerisindeki sınıflara erişim sağlayabilir.
 Service moddülü 
-
-push 
