@@ -6,7 +6,7 @@ language: java
 
 addons:
   sonarcloud:
-    organization: "riscue-github"
+    organization: "necmettincetincift-github"
 
 script:
   - sonar-scanner
