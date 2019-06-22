@@ -1,4 +1,6 @@
 package tr.com.innova.lega.demo.adres;
 
-public interface AdresService {
+import tr.com.innova.lega.demo.base.AbstractService;
+
+public interface AdresService extends AbstractService<Adres> {
 }

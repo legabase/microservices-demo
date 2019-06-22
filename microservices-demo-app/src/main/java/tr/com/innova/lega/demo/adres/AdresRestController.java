@@ -6,40 +6,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tr.com.innova.lega.demo.shared.MappingFilter;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @NoArgsConstructor
 @RequestMapping("v1/adres")
 public class AdresRestController {
-    private AdresRepository adresRepository;
+
     private AdresService adresService;
 
     @Autowired
-    public AdresRestController(AdresRepository adresRepository, AdresService adresService) {
-        this.adresRepository = adresRepository;
+    public AdresRestController(AdresService adresService) {
         this.adresService = adresService;
     }
 
     @GetMapping
-    public List<AdresDTO> getAll() {
-        List<AdresDTO> adresDTOList = new ArrayList<>();
-        Iterable<Adres> adresIterable = adresRepository.findAll();
-        adresIterable.forEach(adres -> adresDTOList.add(AdresDTO.mapFromAdres(adres)));
-        
-        return adresDTOList;
+    public MappingFilter getAll() {
+        final List<Adres> adresList = adresService.findAll();
+        final List<AdresDTO> adresDTOList = adresList.stream().map(AdresDTO::mapFromAdres).collect(Collectors.toList());
+        return new MappingFilter(adresDTOList);
     }
 
-
     @GetMapping("{id}")
-    public AdresDTO findById(@PathVariable String id) {
-        Optional<Adres> adres = adresRepository.findById(id);
-        if (adres.isPresent()) {
-            return AdresDTO.mapFromAdres(adres.get());
-        }
-        throw new RuntimeException();
+    public MappingFilter findById(@PathVariable String id) {
+        final Adres adres = adresService.getOne(id);
+        final AdresDTO adresDTO = AdresDTO.mapFromAdres(adres);
+        return new MappingFilter(adresDTO);
     }
 }
