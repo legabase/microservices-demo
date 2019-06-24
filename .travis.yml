@@ -9,17 +9,18 @@ addons:
     organization: "necmettincetincift-github"
 
 script:
-  - sonar-scanner
+  - mvn clean verify sonar:sonar
 
 # We can specify a list of JDKs to be used for testing
 # A list of available JDKs in Trusty can be seed in:
 # https://docs.travis-ci.com/user/reference/trusty/#jvm-clojure-groovy-java-scala-images
 jdk:
- - openjdk8
+  - openjdk8
 
 cache:
   directories:
-  - $HOME/.m2
+  - '$HOME/.m2/repository'
+  - '$HOME/.sonar/cache'
 
 # Each job in Travis CI has several steps:
 # https://docs.travis-ci.com/user/job-lifecycle/
