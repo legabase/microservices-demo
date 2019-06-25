@@ -17,15 +17,15 @@
     <name>Microservice Demo</name>
     <description>Microservices Demo Project</description>
 
-    <url>https://github.com/necmettincetincift/microservices-demo-app</url>
+    <url>https://github.com/legabase/microservices-demo</url>
     <ciManagement>
-        <url>https://travis-ci.com/necmettincetincift/microservices-demo-app</url>
+        <url>https://travis-ci.com/legabase/microservices-demo</url>
     </ciManagement>
     <scm>
-        <url>https://github.com/necmettincetincift/microservices-demo-app</url>
+        <url>https://github.com/legabase/microservices-demo</url>
     </scm>
     <issueManagement>
-        <url>https://github.com/necmettincetincift/microservices-demo-app/issues</url>
+        <url>https://github.com/legabase/microservices-demo/issues</url>
     </issueManagement>
 
     <modules>
