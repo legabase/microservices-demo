@@ -1,4 +1,4 @@
-package tr.com.innova.lega.demo.adres;
+package tr.com.innova.lega.demo.api.adres;
 
 import lombok.Getter;
 import lombok.Setter;

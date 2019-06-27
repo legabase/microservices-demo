@@ -1,4 +1,4 @@
-package tr.com.innova.lega.demo.adres;
+package tr.com.innova.lega.demo.api.kisi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,10 +7,10 @@ import tr.com.innova.lega.demo.base.AbstractServiceImpl;
 
 @Service
 @Transactional
-public class AdresServiceImpl extends AbstractServiceImpl<Adres> implements AdresService {
+public class KisiServiceImpl extends AbstractServiceImpl<Kisi> implements KisiService {
 
     @Autowired
-    public AdresServiceImpl(AdresRepository adresRepository) {
-        super(adresRepository);
+    public KisiServiceImpl(KisiRepository kisiRepository) {
+        super(kisiRepository);
     }
 }

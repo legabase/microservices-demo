@@ -1,9 +1,9 @@
-package tr.com.innova.lega.demo.adres;
+package tr.com.innova.lega.demo.api.adres;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import tr.com.innova.lega.demo.kisi.Kisi;
+import tr.com.innova.lega.demo.api.kisi.Kisi;
 
 import javax.persistence.*;
 

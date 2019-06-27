@@ -1,4 +1,4 @@
-package tr.com.innova.lega.demo.adres;
+package tr.com.innova.lega.demo.api.adres;
 
 import org.springframework.stereotype.Repository;
 
