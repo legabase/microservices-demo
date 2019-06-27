@@ -1,4 +1,4 @@
-package tr.com.innova.lega.demo.kisi;
+package tr.com.innova.lega.demo.api.kisi;
 
 import org.springframework.stereotype.Repository;
 

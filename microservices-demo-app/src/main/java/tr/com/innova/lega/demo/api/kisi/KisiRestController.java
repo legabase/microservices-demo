@@ -1,4 +1,4 @@
-package tr.com.innova.lega.demo.adres;
+package tr.com.innova.lega.demo.api.kisi;
 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,27 +13,27 @@ import java.util.stream.Collectors;
 
 @RestController
 @NoArgsConstructor
-@RequestMapping("v1/adres")
-public class AdresRestController {
+@RequestMapping("v1/kisi")
+public class KisiRestController {
 
-    private AdresService adresService;
+    private KisiService kisiService;
 
     @Autowired
-    public AdresRestController(AdresService adresService) {
-        this.adresService = adresService;
+    public KisiRestController(KisiService kisiService) {
+        this.kisiService = kisiService;
     }
 
     @GetMapping
     public MappingFilter getAll() {
-        final List<Adres> adresList = adresService.findAll();
-        final List<AdresDTO> adresDTOList = adresList.stream().map(AdresDTO::mapFromAdres).collect(Collectors.toList());
-        return new MappingFilter(adresDTOList);
+        final List<Kisi> kisiList = kisiService.findAll();
+        final List<KisiDTO> kisiDTOList = kisiList.stream().map(KisiDTO::mapFromKisi).collect(Collectors.toList());
+        return new MappingFilter(kisiDTOList, KisiDTO.FILTER_NAME);
     }
 
     @GetMapping("{id}")
     public MappingFilter findById(@PathVariable String id) {
-        final Adres adres = adresService.getOne(id);
-        final AdresDTO adresDTO = AdresDTO.mapFromAdres(adres);
-        return new MappingFilter(adresDTO);
+        final Kisi kisi = kisiService.getOne(id);
+        final KisiDTO kisiDTO = KisiDTO.mapFromKisi(kisi);
+        return new MappingFilter(kisiDTO, KisiDTO.FILTER_NAME, "ad", "soyad");
     }
 }
