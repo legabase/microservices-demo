@@ -10,14 +10,13 @@ public class MappingFilter extends MappingJacksonValue {
         super(object);
     }
 
-    public MappingFilter(Object object, String filterName, String... columnName) {
+    public MappingFilter(Object object, String filterName, String... columnList) {
         super(object);
-        SimpleBeanPropertyFilter filter;
-        if (columnName.length == 0) {
-            filter = SimpleBeanPropertyFilter.serializeAll();
-        } else {
-            filter = SimpleBeanPropertyFilter.filterOutAllExcept(columnName);
-        }
+
+        SimpleBeanPropertyFilter filter = columnList.length == 0 ?
+                SimpleBeanPropertyFilter.serializeAll() :
+                SimpleBeanPropertyFilter.filterOutAllExcept(columnList);
+
         setFilters(new SimpleFilterProvider().addFilter(filterName, filter));
     }
 }
