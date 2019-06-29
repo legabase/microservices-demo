@@ -31,7 +31,7 @@ public class KisiRestController {
     @GetMapping
     public MappingFilter getAll() {
         final List<Kisi> kisiList = kisiService.findAll();
-        final List<KisiDto> kisiDtoList = kisiList.stream().map(kisiMapper::mapKisiToKisiDto).collect(Collectors.toList());
+        final List<KisiDto> kisiDtoList = kisiMapper.mapKisiListToKisiDtoList(kisiList);
         return new MappingFilter(kisiDtoList, KisiDto.FILTER_NAME);
     }
 

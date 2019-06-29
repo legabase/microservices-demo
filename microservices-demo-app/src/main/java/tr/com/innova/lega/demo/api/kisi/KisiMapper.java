@@ -2,8 +2,12 @@ package tr.com.innova.lega.demo.api.kisi;
 
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public abstract class KisiMapper {
+import java.util.List;
 
-    public abstract KisiDto mapKisiToKisiDto(Kisi source);
+@Mapper
+public interface KisiMapper {
+
+    KisiDto mapKisiToKisiDto(Kisi source);
+
+    List<KisiDto> mapKisiListToKisiDtoList(List<Kisi> source);
 }

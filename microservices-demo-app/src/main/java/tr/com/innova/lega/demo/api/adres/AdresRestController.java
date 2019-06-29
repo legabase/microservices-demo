@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import tr.com.innova.lega.demo.shared.MappingFilter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @NoArgsConstructor
@@ -31,7 +30,7 @@ public class AdresRestController {
     @GetMapping
     public MappingFilter getAll() {
         final List<Adres> adresList = adresService.findAll();
-        final List<AdresDto> adresDtoList = adresList.stream().map(adresMapper::mapAdresToAdresDto).collect(Collectors.toList());
+        final List<AdresDto> adresDtoList = adresMapper.mapAdresListToAdresDtoList(adresList);
         return new MappingFilter(adresDtoList);
     }
 

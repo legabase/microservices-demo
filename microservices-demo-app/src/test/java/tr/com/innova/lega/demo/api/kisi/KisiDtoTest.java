@@ -25,7 +25,7 @@ public class KisiDtoTest {
     }
 
     @Test
-    public void shouldMapKisiToDto() {
+    public void shouldMapKisiToKisiDto() {
         KisiDto kisiDto = kisiMapper.mapKisiToKisiDto(kisi);
 
         assertNotNull(kisiDto);

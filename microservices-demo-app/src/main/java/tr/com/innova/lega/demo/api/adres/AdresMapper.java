@@ -2,8 +2,12 @@ package tr.com.innova.lega.demo.api.adres;
 
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public abstract class AdresMapper {
+import java.util.List;
 
-    public abstract AdresDto mapAdresToAdresDto(Adres source);
+@Mapper
+public interface AdresMapper {
+
+    AdresDto mapAdresToAdresDto(Adres source);
+
+    List<AdresDto> mapAdresListToAdresDtoList(List<Adres> source);
 }
