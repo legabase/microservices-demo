@@ -2,25 +2,21 @@ package tr.com.innova.lega.demo.api.kisi;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import tr.com.innova.lega.demo.base.AbstractEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "KISI")
-public class Kisi {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
+public class Kisi extends AbstractEntity {
 
     @Column(name = "AD", columnDefinition = "VARCHAR", length = 256, nullable = false)
     private String ad;
 
-    @Column(name = "SOYAD", columnDefinition = "VARCHAR", length = 256)
+    @Column(name = "SOYAD", columnDefinition = "VARCHAR", length = 256, nullable = false)
     private String soyad;
 }

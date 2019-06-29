@@ -2,8 +2,8 @@ package tr.com.innova.lega.demo.api.adres;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import tr.com.innova.lega.demo.api.kisi.Kisi;
+import tr.com.innova.lega.demo.base.AbstractEntity;
 
 import javax.persistence.*;
 
@@ -11,13 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "ADRES")
-public class Adres {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
+public class Adres extends AbstractEntity {
 
     @Column(name = "ACIK_ADRES", columnDefinition = "VARCHAR", length = 256, nullable = false)
     private String acikAdres;
@@ -26,4 +20,3 @@ public class Adres {
     @JoinColumn(name = "KISI_ID", updatable = false, nullable = false)
     private Kisi kisi;
 }
-
