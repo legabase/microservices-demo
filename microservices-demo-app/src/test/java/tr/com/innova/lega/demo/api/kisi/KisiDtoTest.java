@@ -2,14 +2,17 @@ package tr.com.innova.lega.demo.api.kisi;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mapstruct.factory.Mappers;
 
 import static org.junit.Assert.*;
 
-public class KisiDTOTest {
+public class KisiDtoTest {
 
     private static final String ACTUAL_ID = "1001";
     private static final String ACTUAL_NAME = "Name";
     private static final String ACTUAL_SURNAME = "Surname";
+
+    private KisiMapper kisiMapper = Mappers.getMapper(KisiMapper.class);
 
     private Kisi kisi;
 
@@ -22,15 +25,15 @@ public class KisiDTOTest {
     }
 
     @Test
-    public void mapFromKisi() {
-        final KisiDTO kisiDTO = KisiDTO.mapFromKisi(kisi);
+    public void shouldMapKisiToDto() {
+        KisiDto kisiDto = kisiMapper.mapKisiToKisiDto(kisi);
 
-        assertNotNull(kisiDTO);
+        assertNotNull(kisiDto);
 
-        assertEquals(ACTUAL_ID, kisiDTO.getId());
-        assertEquals(ACTUAL_NAME, kisiDTO.getAd());
-        assertEquals(ACTUAL_SURNAME, kisiDTO.getSoyad());
+        assertEquals(ACTUAL_ID, kisiDto.getId());
+        assertEquals(ACTUAL_NAME, kisiDto.getAd());
+        assertEquals(ACTUAL_SURNAME, kisiDto.getSoyad());
 
-        assertNull(KisiDTO.mapFromKisi(null));
+        assertNull(kisiMapper.mapKisiToKisiDto(null));
     }
 }

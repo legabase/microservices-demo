@@ -17,23 +17,28 @@ import java.util.stream.Collectors;
 public class AdresRestController {
 
     private AdresService adresService;
+    private AdresMapper adresMapper;
 
     @Autowired
-    public AdresRestController(AdresService adresService) {
+    public AdresRestController(
+            AdresService adresService,
+            AdresMapper adresMapper
+    ) {
         this.adresService = adresService;
+        this.adresMapper = adresMapper;
     }
 
     @GetMapping
     public MappingFilter getAll() {
         final List<Adres> adresList = adresService.findAll();
-        final List<AdresDTO> adresDTOList = adresList.stream().map(AdresDTO::mapFromAdres).collect(Collectors.toList());
-        return new MappingFilter(adresDTOList);
+        final List<AdresDto> adresDtoList = adresList.stream().map(adresMapper::mapAdresToAdresDto).collect(Collectors.toList());
+        return new MappingFilter(adresDtoList);
     }
 
     @GetMapping("{id}")
     public MappingFilter findById(@PathVariable String id) {
         final Adres adres = adresService.getOne(id);
-        final AdresDTO adresDTO = AdresDTO.mapFromAdres(adres);
-        return new MappingFilter(adresDTO);
+        final AdresDto adresDto = adresMapper.mapAdresToAdresDto(adres);
+        return new MappingFilter(adresDto);
     }
 }
