@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "KISI")
+@Table(name = "T_KISI")
 public class Kisi extends AbstractEntity {
 
     @Column(name = "AD", columnDefinition = "VARCHAR", length = 256, nullable = false)

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "ADRES")
+@Table(name = "T_ADRES")
 public class Adres extends AbstractEntity {
 
     @Column(name = "ACIK_ADRES", columnDefinition = "VARCHAR", length = 256, nullable = false)

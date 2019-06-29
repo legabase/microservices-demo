@@ -16,7 +16,7 @@ import java.io.Serializable;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;

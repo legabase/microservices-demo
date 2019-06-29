@@ -13,6 +13,6 @@ import javax.persistence.Version;
 public abstract class AbstractVersionedEntity extends BaseEntity {
 
     @Version
-    @Column(name = "VERSION")
+    @Column(name = "VERSION", nullable = false)
     private Long version;
 }
