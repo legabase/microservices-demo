@@ -6,6 +6,8 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 
 public class MappingFilter extends MappingJacksonValue {
 
+    public static final String FILTER_NAME = "DefaultFilter";
+
     public MappingFilter(Object object) {
         super(object);
     }
