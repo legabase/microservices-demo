@@ -6,18 +6,19 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 
 public class MappingFilter extends MappingJacksonValue {
 
+    public static final String FILTER_NAME = "DefaultFilter";
+
     public MappingFilter(Object object) {
         super(object);
     }
 
-    public MappingFilter(Object object, String filterName, String... columnName) {
+    public MappingFilter(Object object, String filterName, String... columnList) {
         super(object);
-        SimpleBeanPropertyFilter filter;
-        if (columnName.length == 0) {
-            filter = SimpleBeanPropertyFilter.serializeAll();
-        } else {
-            filter = SimpleBeanPropertyFilter.filterOutAllExcept(columnName);
-        }
+
+        SimpleBeanPropertyFilter filter = columnList.length == 0 ?
+                SimpleBeanPropertyFilter.serializeAll() :
+                SimpleBeanPropertyFilter.filterOutAllExcept(columnList);
+
         setFilters(new SimpleFilterProvider().addFilter(filterName, filter));
     }
 }

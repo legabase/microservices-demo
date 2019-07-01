@@ -32,13 +32,13 @@ public class KisiRestController {
     public MappingFilter getAll() {
         final List<Kisi> kisiList = kisiService.findAll();
         final List<KisiDto> kisiDtoList = kisiMapper.mapKisiListToKisiDtoList(kisiList);
-        return new MappingFilter(kisiDtoList, KisiDto.FILTER_NAME);
+        return new MappingFilter(kisiDtoList, MappingFilter.FILTER_NAME);
     }
 
     @GetMapping("{id}")
     public MappingFilter findById(@PathVariable String id) {
         final Kisi kisi = kisiService.getOne(id);
         final KisiDto kisiDto = kisiMapper.mapKisiToKisiDto(kisi);
-        return new MappingFilter(kisiDto, KisiDto.FILTER_NAME, "ad", "soyad");
+        return new MappingFilter(kisiDto, MappingFilter.FILTER_NAME, "ad", "soyad");
     }
 }
