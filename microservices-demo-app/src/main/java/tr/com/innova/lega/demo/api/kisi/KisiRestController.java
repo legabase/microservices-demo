@@ -17,23 +17,28 @@ import java.util.stream.Collectors;
 public class KisiRestController {
 
     private KisiService kisiService;
+    private KisiMapper kisiMapper;
 
     @Autowired
-    public KisiRestController(KisiService kisiService) {
+    public KisiRestController(
+            KisiService kisiService,
+            KisiMapper kisiMapper
+    ) {
         this.kisiService = kisiService;
+        this.kisiMapper = kisiMapper;
     }
 
     @GetMapping
     public MappingFilter getAll() {
         final List<Kisi> kisiList = kisiService.findAll();
-        final List<KisiDTO> kisiDTOList = kisiList.stream().map(KisiDTO::mapFromKisi).collect(Collectors.toList());
-        return new MappingFilter(kisiDTOList, MappingFilter.FILTER_NAME);
+        final List<KisiDto> kisiDtoList = kisiMapper.mapKisiListToKisiDtoList(kisiList);
+        return new MappingFilter(kisiDtoList, MappingFilter.FILTER_NAME);
     }
 
     @GetMapping("{id}")
     public MappingFilter findById(@PathVariable String id) {
         final Kisi kisi = kisiService.getOne(id);
-        final KisiDTO kisiDTO = KisiDTO.mapFromKisi(kisi);
-        return new MappingFilter(kisiDTO, MappingFilter.FILTER_NAME, "ad", "soyad");
+        final KisiDto kisiDto = kisiMapper.mapKisiToKisiDto(kisi);
+        return new MappingFilter(kisiDto, MappingFilter.FILTER_NAME, "ad", "soyad");
     }
 }
