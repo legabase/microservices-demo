@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import tr.com.innova.lega.demo.shared.MappingFilter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @NoArgsConstructor
