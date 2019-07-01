@@ -27,13 +27,13 @@ public class KisiRestController {
     public MappingFilter getAll() {
         final List<Kisi> kisiList = kisiService.findAll();
         final List<KisiDTO> kisiDTOList = kisiList.stream().map(KisiDTO::mapFromKisi).collect(Collectors.toList());
-        return new MappingFilter(kisiDTOList, KisiDTO.FILTER_NAME);
+        return new MappingFilter(kisiDTOList, MappingFilter.FILTER_NAME);
     }
 
     @GetMapping("{id}")
     public MappingFilter findById(@PathVariable String id) {
         final Kisi kisi = kisiService.getOne(id);
         final KisiDTO kisiDTO = KisiDTO.mapFromKisi(kisi);
-        return new MappingFilter(kisiDTO, KisiDTO.FILTER_NAME, "ad", "soyad");
+        return new MappingFilter(kisiDTO, MappingFilter.FILTER_NAME, "ad", "soyad");
     }
 }

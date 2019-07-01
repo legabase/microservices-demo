@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Getter;
 import lombok.Setter;
 
+import static tr.com.innova.lega.demo.shared.MappingFilter.FILTER_NAME;
+
 @Getter
 @Setter
-@JsonFilter("KisiDTOFilter")
+@JsonFilter(FILTER_NAME)
 public class KisiDTO {
-    public static final String FILTER_NAME = "KisiDTOFilter";
     private String id;
     private String ad;
     private String soyad;
