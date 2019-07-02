@@ -25,7 +25,6 @@ public class KisiRestControllerUnitTest {
     @Mock
     private KisiRepository kisiRepository;
 
-    private Kisi kisi;
     private List<Kisi> kisiList;
 
     private KisiMapper kisiMapper = Mappers.getMapper(KisiMapper.class);
@@ -35,13 +34,13 @@ public class KisiRestControllerUnitTest {
     @Before
     public void before() {
         prepareKisi();
-        when(kisiRepository.getOne(ACTUAL_ID)).thenReturn(kisi);
+        when(kisiRepository.getOne(ACTUAL_ID)).thenReturn(kisiList.get(0));
         when(kisiRepository.findAll()).thenReturn(kisiList);
         kisiRestController = new KisiRestController(new KisiServiceImpl(kisiRepository), kisiMapper);
     }
 
     private void prepareKisi() {
-        kisi = new Kisi();
+        Kisi kisi = new Kisi();
         kisi.setId(ACTUAL_ID);
         kisi.setAd(ACTUAL_NAME);
         kisi.setSoyad(ACTUAL_SURNAME);
@@ -74,6 +73,6 @@ public class KisiRestControllerUnitTest {
         verify(kisiRepository, times(1)).getOne(ACTUAL_ID);
 
         assertNotNull(response.getValue());
-        assertEquals(kisiMapper.mapKisiToKisiDto(kisi), response.getValue());
+        assertEquals(kisiMapper.mapKisiToKisiDto(kisiList.get(0)), response.getValue());
     }
 }
