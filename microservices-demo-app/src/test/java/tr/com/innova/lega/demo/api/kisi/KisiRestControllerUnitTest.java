@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class KisiRestControllerTest {
+public class KisiRestControllerUnitTest {
 
     private static final String ACTUAL_ID = "1001";
     private static final String ACTUAL_NAME = "Name";
@@ -27,13 +28,16 @@ public class KisiRestControllerTest {
     private Kisi kisi;
     private List<Kisi> kisiList;
 
+    private KisiMapper kisiMapper = Mappers.getMapper(KisiMapper.class);
+
     private KisiRestController kisiRestController;
 
     @Before
     public void before() {
         prepareKisi();
-        mockKisiRepository();
-        autowireKisiRestController();
+        when(kisiRepository.getOne(ACTUAL_ID)).thenReturn(kisi);
+        when(kisiRepository.findAll()).thenReturn(kisiList);
+        kisiRestController = new KisiRestController(new KisiServiceImpl(kisiRepository), kisiMapper);
     }
 
     private void prepareKisi() {
@@ -52,44 +56,24 @@ public class KisiRestControllerTest {
         kisiList.add(kisi2);
     }
 
-    private void mockKisiRepository() {
-        when(kisiRepository.getOne(ACTUAL_ID)).thenReturn(kisi);
-        when(kisiRepository.findAll()).thenReturn(kisiList);
-    }
-
-    private void autowireKisiRestController() {
-        KisiServiceImpl kisiService = new KisiServiceImpl(kisiRepository);
-        KisiMapper kisiMapper = Mappers.getMapper(KisiMapper.class);
-        kisiRestController = new KisiRestController(kisiService, kisiMapper);
-    }
-
     @Test
     public void getAll() {
         MappingFilter response = kisiRestController.getAll();
         verify(kisiRepository, times(1)).findAll();
+
         List value = (List) response.getValue();
-
+        assertNotNull(value);
         assertEquals(2, value.size());
-
-        KisiDto value0 = (KisiDto) value.get(0);
-        assertEquals(ACTUAL_ID, value0.getId());
-        assertEquals(ACTUAL_NAME, value0.getAd());
-        assertEquals(ACTUAL_SURNAME, value0.getSoyad());
-
-        KisiDto value1 = (KisiDto) value.get(1);
-        assertEquals(ACTUAL_ID + "2", value1.getId());
-        assertEquals(ACTUAL_NAME + "2", value1.getAd());
-        assertEquals(ACTUAL_SURNAME + "2", value1.getSoyad());
+        assertEquals(kisiMapper.mapKisiToKisiDto(kisiList.get(0)), value.get(0));
+        assertEquals(kisiMapper.mapKisiToKisiDto(kisiList.get(1)), value.get(1));
     }
 
     @Test
     public void findById() {
         MappingFilter response = kisiRestController.findById(ACTUAL_ID);
         verify(kisiRepository, times(1)).getOne(ACTUAL_ID);
-        KisiDto value = (KisiDto) response.getValue();
 
-        assertEquals(ACTUAL_ID, value.getId());
-        assertEquals(ACTUAL_NAME, value.getAd());
-        assertEquals(ACTUAL_SURNAME, value.getSoyad());
+        assertNotNull(response.getValue());
+        assertEquals(kisiMapper.mapKisiToKisiDto(kisi), response.getValue());
     }
 }
