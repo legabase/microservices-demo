@@ -1,6 +1,5 @@
 package tr.com.innova.lega.demo.api.kisi;
 
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +10,6 @@ import tr.com.innova.lega.demo.shared.MappingFilter;
 import java.util.List;
 
 @RestController
-@NoArgsConstructor
 @RequestMapping("v1/kisi")
 public class KisiRestController {
 
